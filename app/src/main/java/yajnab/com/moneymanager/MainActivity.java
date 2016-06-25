@@ -1,5 +1,9 @@
 package yajnab.com.moneymanager;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
             }         });
     }
+
 
 
 }
