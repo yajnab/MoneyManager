@@ -1,5 +1,7 @@
 package yajnab.com.moneymanager;
 
+import android.text.Editable;
+
 import java.util.Date;
 
 /**
@@ -19,6 +21,18 @@ public class Money {
         this.amount=amount;
         this.date=date;
     }
+    public Money(String purpose, String type, float amount, String date){
+        //this.id = id;
+        this.purpose = purpose;
+        this.type=type;
+        this.amount=amount;
+        this.date=date;
+    }
+
+    public Money() {
+
+    }
+
     //Set Functions
     public void setID(int id){
         this.id = id;
