@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
         addbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                String s = txtAmt.getText()+" " + txtDate.getText()+" "+ txtPurpose.getText();
-                chk.setText(s);
-                db.addMoney(new Money(txtPurpose.getText().toString(),"expd", Float.parseFloat(String.valueOf(txtAmt.getText())), "2015-06-06"));
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();String dates=null;
+                if (!txtDate.getText().toString().equals("")) {dates=txtDate.getText().toString();} else {dates=dateFormat.format(date);}
+                String s = txtAmt.getText()+" " + dates+" "+ txtPurpose.getText();
+                chk.setText(dates);
+
+
+                db.addMoney(new Money(txtPurpose.getText().toString(),"expd", Float.parseFloat(String.valueOf(txtAmt.getText())), dates));
                 Log.d("MoneyManagerReader","Reading all MoneyInventory");
                 List<Money> moneyList = db.getRecords();
                 for(Money money : moneyList){
