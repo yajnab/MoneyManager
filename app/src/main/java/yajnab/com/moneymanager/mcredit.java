@@ -13,17 +13,8 @@ import android.view.ViewGroup;
  */
 public class mcredit extends Fragment {
 
-
-    public mcredit() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_mcredit, container, false);
     }
-
 }

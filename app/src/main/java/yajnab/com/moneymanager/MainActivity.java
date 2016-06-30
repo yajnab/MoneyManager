@@ -1,16 +1,11 @@
 package yajnab.com.moneymanager;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import android.support.design.widget.TabLayout;
+
 import android.support.v4.view.ViewPager;
-import android.app.ActionBar;
-import android.app.ActionBar.TabListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -23,11 +18,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class MainActivity extends AppCompatActivity {
 
-    private ViewPager viewpager;
-    private TabsPagerAdapter mAdapter;
-    private ActionBar actionBar;
+    //private ViewPager viewpager;
+    //private TabsPagerAdapter mAdapter;
+    //private ActionBar actionBar;
     private String[] tabs= {"Credit", "Debit"};
 
 
@@ -37,42 +32,33 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Fragmentation
-        viewpager = (ViewPager) findViewById(R.id.pager);
-        actionBar = getActionBar();
-        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-
-        viewpager.setAdapter(mAdapter);
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        //Adding the Tabs
-        for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name)
-                    .setTabListener(this));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        for(String tab_name : tabs) {
+            tabLayout.addTab(tabLayout.newTab().setText(tab_name));
         }
-        viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onPageSelected(int position) {
-                // on changing the page
-                // make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            public void onTabUnselected(TabLayout.Tab tab) {
+
             }
 
             @Override
-            public void onPageScrollStateChanged(int arg0) {
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-
-
-
-
-        final AutoCompleteTextView txtPurpose = (AutoCompleteTextView) findViewById(R.id.autoTxtPurpose);
+        /*final AutoCompleteTextView txtPurpose = (AutoCompleteTextView) findViewById(R.id.autoTxtPurpose);
         final EditText txtAmt = (EditText) findViewById(R.id.txtAmt);
         final EditText txtDate = (EditText) findViewById(R.id.txtDate);
         final Button addbtn = (Button) findViewById(R.id.addBtn);
@@ -98,22 +84,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                     Log.d("MoneyManagerReader",log);
                 }
 
-            }         });
-    }
-
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-            viewpager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
-
+            }         });*/
     }
 }
