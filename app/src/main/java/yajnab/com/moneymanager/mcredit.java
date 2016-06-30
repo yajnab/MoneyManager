@@ -3,6 +3,7 @@ package yajnab.com.moneymanager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +31,8 @@ public class mcredit extends Fragment {
         final EditText txtDate = (EditText) v.findViewById(R.id.txtDate);
         final Button addbtn = (Button) v.findViewById(R.id.addBtn);
         final TextView chk = (TextView) v.findViewById(R.id.chk);
-
-        //final dbHandler db = new dbHandler(this);
+        Context thiscontext = container.getContext();
+        final dbHandler db = new dbHandler(thiscontext);
 
         addbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -43,13 +44,13 @@ public class mcredit extends Fragment {
                 chk.setText(dates);
 
 
-                /*db.addMoney(new Money(txtPurpose.getText().toString(),"mcredit", Float.parseFloat(String.valueOf(txtAmt.getText())), dates));
+                db.addMoney(new Money(txtPurpose.getText().toString(),"CR", Float.parseFloat(String.valueOf(txtAmt.getText())), dates));
                 Log.d("MoneyManagerReader","Reading all MoneyInventory");
                 List<Money> moneyList = db.getRecords();
                 for(Money money : moneyList){
                     String log =  money.getID()+"\t"+money.getPurpose()+"\t"+money.getType()+"\t"+money.getAmount()+"\t"+money.getDate();
                     Log.d("MoneyManagerReader",log);
-                }*/
+                }
 
             }         });
         return v;
