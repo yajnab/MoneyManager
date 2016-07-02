@@ -12,7 +12,7 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/txtPayee"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -23,9 +23,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_toRightOf="@+id/editText"
-        android:layout_toEndOf="@+id/editText" />
+        android:layout_below="@+id/txtPayee"
+        android:layout_toRightOf="@+id/txtPayee"
+        android:layout_toEndOf="@+id/txtPayee" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,16 +52,16 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:id="@+id/txtDebitAmt"
+        android:layout_below="@+id/txtPayee"
+        android:layout_alignLeft="@+id/txtPayee"
+        android:layout_alignStart="@+id/txtPayee" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Debit Amount"
-        android:id="@+id/button"
+        android:id="@+id/btnDebit"
         android:layout_alignBottom="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="51dp" />
@@ -72,7 +72,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Date"
         android:id="@+id/textView6"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/txtDebitAmt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -81,9 +81,9 @@
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:id="@+id/editText3"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:id="@+id/txtDebitDate"
+        android:layout_below="@+id/txtDebitAmt"
+        android:layout_alignLeft="@+id/txtDebitAmt"
+        android:layout_alignStart="@+id/txtDebitAmt" />
 
 </RelativeLayout>

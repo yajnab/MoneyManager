@@ -44,7 +44,7 @@ public class mcredit extends Fragment {
                 chk.setText(dates);
 
 
-                db.addMoney(new Money(txtPurpose.getText().toString(),"CR", Float.parseFloat(String.valueOf(txtAmt.getText())), dates));
+                db.addMoney(new Money(txtPurpose.getText().toString(),"CR", Float.parseFloat(String.valueOf(txtAmt.getText())), dates, ));
                 Log.d("MoneyManagerReader","Reading all MoneyInventory");
                 List<Money> moneyList = db.getRecords();
                 for(Money money : moneyList){

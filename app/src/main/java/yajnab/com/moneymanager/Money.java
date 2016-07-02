@@ -13,20 +13,23 @@ public class Money {
     private String type;
     private float amount;
     private String date;
+    private float balance;
 
-    public Money(int id, String purpose, String type, float amount, String date){
+    public Money(int id, String purpose, String type, float amount, String date, float balance){
         this.id = id;
         this.purpose = purpose;
         this.type=type;
         this.amount=amount;
         this.date=date;
+        this.balance = balance;
     }
-    public Money(String purpose, String type, float amount, String date){
+    public Money(String purpose, String type, float amount, String date, float balance){
         //this.id = id;
         this.purpose = purpose;
         this.type=type;
         this.amount=amount;
         this.date=date;
+        this.balance = balance;
     }
 
     public Money() {
@@ -49,6 +52,7 @@ public class Money {
     public void setDate(String date){
         this.date=date;
     }
+    public void setBalance(float balance){this.balance=balance;}
     //Get Functions
     public int getID(){
         return id;
@@ -65,4 +69,5 @@ public class Money {
     public String getDate(){
         return date;
     }
+    public float getBalance(){return balance;}
 }

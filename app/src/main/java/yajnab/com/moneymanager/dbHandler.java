@@ -21,6 +21,7 @@ public class dbHandler extends SQLiteOpenHelper {
     private static final String KEY_TYPE="type";
     private static final String KEY_AMT="amt";
     private static final String KEY_DATE="date";
+    private static final String KEY_BALANCE="balance";
 
     public dbHandler(Context context){
         super(context,dbName, null, DATABSE_VERSION);
@@ -28,7 +29,7 @@ public class dbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createquery = "CREATE TABLE "+ TableName +"("+KEY_ID+" INTEGER PRIMARY KEY,"+ KEY_PURPOSE+ " TEXT, "+ KEY_TYPE+" TEXT, "+KEY_AMT+" FLOAT,"+ KEY_DATE+ " DATETIME)";
+        String createquery = "CREATE TABLE "+ TableName +"("+KEY_ID+" INTEGER PRIMARY KEY,"+ KEY_PURPOSE+ " TEXT, "+ KEY_TYPE+" TEXT, "+KEY_AMT+" FLOAT,"+ KEY_DATE+ " DATETIME"+ KEY_BALANCE+ "FLOAT)";
         sqLiteDatabase.execSQL(createquery);
     }
 
@@ -44,6 +45,7 @@ public class dbHandler extends SQLiteOpenHelper {
         values.put(KEY_TYPE, money.getType());
         values.put(KEY_AMT, money.getAmount());
         values.put(KEY_DATE, money.getDate());
+        values.put(KEY_BALANCE, money.getBalance());
 
         //Insertion
         db.insert(TableName, null, values);
@@ -62,6 +64,7 @@ public class dbHandler extends SQLiteOpenHelper {
                 money.setType(cursor.getString(2));
                 money.setAmount(Float.parseFloat(cursor.getString(3)));
                 money.setDate(cursor.getString(4));
+                money.setBalance(Float.parseFloat(cursor.getString(5)));
                 moneylist.add(money);
             }
             while (cursor.moveToNext());
