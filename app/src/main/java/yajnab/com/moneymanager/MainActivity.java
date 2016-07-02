@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     //private ViewPager viewpager;
     //private TabsPagerAdapter mAdapter;
     //private ActionBar actionBar;
-    private String[] tabs= {"Credit", "Debit"};
+    private String[] tabs= {"Home", "Credit", "Debit"};
 
 
 

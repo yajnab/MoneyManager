@@ -21,8 +21,10 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new mcredit();
+                return new mhome();
             case 1:
+                return new mcredit();
+            case 2:
                 return new mdebit();
             default:
                 return null;
