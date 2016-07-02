@@ -42,13 +42,13 @@ public class mcredit extends Fragment {
                 if (!txtDate.getText().toString().equals("")) {dates=txtDate.getText().toString();} else {dates=dateFormat.format(date);}
                 String s = txtAmt.getText()+" " + dates+" "+ txtPurpose.getText();
                 chk.setText(dates);
-
-
-                db.addMoney(new Money(txtPurpose.getText().toString(),"CR", Float.parseFloat(String.valueOf(txtAmt.getText())), dates, ));
+                float fbalance = db.getLastRecord().getBalance();
+                float nbalance = fbalance - Float.parseFloat(String.valueOf(txtAmt.getText()));
+                db.addMoney(new Money(txtPurpose.getText().toString(),"CR", Float.parseFloat(String.valueOf(txtAmt.getText())), dates, nbalance));
                 Log.d("MoneyManagerReader","Reading all MoneyInventory");
                 List<Money> moneyList = db.getRecords();
                 for(Money money : moneyList){
-                    String log =  money.getID()+"\t"+money.getPurpose()+"\t"+money.getType()+"\t"+money.getAmount()+"\t"+money.getDate();
+                    String log =  money.getID()+"\t"+money.getPurpose()+"\t"+money.getType()+"\t"+money.getAmount()+"\t"+money.getDate() +"\t"+money.getBalance();
                     Log.d("MoneyManagerReader",log);
                 }
 

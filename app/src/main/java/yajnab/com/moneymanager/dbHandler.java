@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,8 +31,11 @@ public class dbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createquery = "CREATE TABLE "+ TableName +"("+KEY_ID+" INTEGER PRIMARY KEY,"+ KEY_PURPOSE+ " TEXT, "+ KEY_TYPE+" TEXT, "+KEY_AMT+" FLOAT,"+ KEY_DATE+ " DATETIME"+ KEY_BALANCE+ "FLOAT)";
+        String createquery = "CREATE TABLE "+ TableName +"("+KEY_ID+" INTEGER PRIMARY KEY,"+ KEY_PURPOSE+ " TEXT, "+ KEY_TYPE+" TEXT, "+KEY_AMT+" FLOAT,"+ KEY_DATE+ " DATETIME,"+ KEY_BALANCE+ " FLOAT)";
+        String dates=(new SimpleDateFormat("yyyy-MM-dd")).format(new Date());
+        String newQuery = "insert into "+TableName+" values(0, 'Initial', 'INIT', 0.0, "+dates+", 0.0);";
         sqLiteDatabase.execSQL(createquery);
+        sqLiteDatabase.execSQL(newQuery);
     }
 
     @Override
@@ -71,4 +76,18 @@ public class dbHandler extends SQLiteOpenHelper {
         }
         return moneylist;
         }
+    public Money getLastRecord(){
+        String getquery="SELECT * FROM "+ TableName;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(getquery, null);
+        cursor.moveToLast();
+        Money money = new Money();
+        money.setID(Integer.parseInt(cursor.getString(0)));
+        money.setPurpose(cursor.getString(1));
+        money.setType(cursor.getString(2));
+        money.setAmount(Float.parseFloat(cursor.getString(3)));
+        money.setDate(cursor.getString(4));
+        money.setBalance(Float.parseFloat(cursor.getString(5)));
+        return money;
+    }
     }
