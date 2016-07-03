@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class dbHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createquery = "CREATE TABLE "+ TableName +"("+KEY_ID+" INTEGER PRIMARY KEY,"+ KEY_PURPOSE+ " TEXT, "+ KEY_TYPE+" TEXT, "+KEY_AMT+" FLOAT,"+ KEY_DATE+ " DATETIME,"+ KEY_BALANCE+ " FLOAT)";
         String dates=(new SimpleDateFormat("yyyy-MM-dd")).format(new Date());
-        String newQuery = "insert into "+TableName+" values(0, 'Initial', 'INIT', 0.0, "+dates+", 0.0);";
+        String newQuery = "insert into "+TableName+" values(0, 'Initial', 'INIT', 0.0, '"+dates+"', 0.0);";
         sqLiteDatabase.execSQL(createquery);
         sqLiteDatabase.execSQL(newQuery);
     }
