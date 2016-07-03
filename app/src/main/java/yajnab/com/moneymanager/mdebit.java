@@ -28,7 +28,7 @@ public class mdebit extends Fragment {
         View v= inflater.inflate(R.layout.fragment_mdebit, container, false);
         final EditText txtPayee = (EditText) v.findViewById(R.id.txtPayee);
         final EditText txtDebitAmt = (EditText) v.findViewById(R.id.txtDebitAmt);
-        final EditText txtDebitDate = (EditText) v.findViewById(R.id.txtDebitAmt);
+        final EditText txtDebitDate = (EditText) v.findViewById(R.id.txtDebitDate);
         final dbHandler db = new dbHandler(container.getContext());
         final Button btnDebit = (Button) v.findViewById(R.id.btnDebit);
         btnDebit.setOnClickListener(new View.OnClickListener(){
