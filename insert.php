@@ -21,16 +21,21 @@ $sql1 = "SELECT KEY_BALANCE FROM moneyinventory WHERE KEY_ID=".$lid;
 $baln = $conn->query($sql1)->fetch_object()->KEY_BALANCE;
 $balance = $baln - $amt;
 $sql = "INSERT INTO moneyinventory (KEY_PURPOSE, KEY_TYPE, KEY_AMT, KEY_DATE, KEY_BALANCE) VALUES ('$purpose', '$type', $amt, '$date', $balance)";
-$conn->query($sql);
-/*if($conn->query($sql) ===TRUE) {
-	$last_id = $conn->insert_id;
+//$conn->query($sql);
+if($conn->query($sql) ===TRUE) {
+	/*$last_id = $conn->insert_id;
 	echo "Successfully added" .$last_id;
 	echo "Balance last is" .$baln;
-	echo "Lid is" .$lid;
+	echo "Lid is" .$lid;*/
+	header("Location:/success.php");
+	exit();
+	//echo "Added";
 }
 else{
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}*/
+    //echo "Error: " . $sql . "<br>" . $conn->error;
+    header("Location:/ifail.php");
+    exit();
+}
 
 $conn->close();
 ?>
